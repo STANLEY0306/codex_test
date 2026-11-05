@@ -1,0 +1,128 @@
+/* 設定整個頁面的色彩、字體與基本盒模型。 */
+:root {
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  color: #25332d;
+  background: #f5f7f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+/* 將主要內容置中，並保留適合手機閱讀的左右留白。 */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 52px 20px 32px;
+  background: radial-gradient(ellipse at 50% 0%, #e8f2e9 0, #f5f7f4 48%);
+}
+
+.container { width: min(100%, 700px); margin: 0 auto; }
+.page-header { margin-bottom: 30px; }
+.eyebrow { margin: 0 0 8px; color: #58826a; font-size: 12px; font-weight: 700; letter-spacing: .16em; }
+h1 { margin: 0; color: #22352a; font-size: clamp(30px, 6vw, 40px); letter-spacing: .04em; }
+.subtitle { margin: 10px 0 0; color: #748078; font-size: 14px; }
+
+/* 卡片承載輸入表單與支出清單，使用柔和陰影區隔內容。 */
+.card {
+  margin-bottom: 18px;
+  padding: 26px;
+  border: 1px solid #e8ece7;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 8px 28px rgba(40, 61, 47, .055);
+}
+h2 { margin: 0; color: #2c3c32; font-size: 18px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+label { display: flex; flex-direction: column; gap: 8px; color: #536258; font-size: 13px; font-weight: 600; }
+input, select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid #dfe6df;
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #26362c;
+  font: inherit;
+  font-size: 14px;
+  transition: border-color .15s, box-shadow .15s;
+}
+input:focus, select:focus { border-color: #6b9b79; box-shadow: 0 0 0 3px rgba(107, 155, 121, .14); }
+.amount-input { position: relative; display: flex; align-items: center; }
+.amount-input > span { position: absolute; left: 14px; color: #829087; }
+.amount-input input { padding-left: 30px; }
+.submit-button {
+  display: block;
+  min-height: 47px;
+  margin: 22px 0 0 auto;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #4d795c;
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s, transform .15s;
+}
+.submit-button:hover { background: #3e684c; transform: translateY(-1px); }
+.submit-button:focus-visible { outline: 3px solid #a8cbb0; outline-offset: 3px; }
+.list-card { padding-bottom: 12px; }
+.list-heading { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #edf0ec; }
+.list-caption { margin: 5px 0 0; color: #8b968e; font-size: 12px; }
+.total { margin: 0; color: #477253; font-size: 23px; font-weight: 750; }
+.expense-list { margin: 0; padding: 0; list-style: none; }
+.expense-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 2px; border-bottom: 1px solid #f0f2ef; }
+.expense-item:last-child { border-bottom: 0; }
+.expense-info { display: flex; align-items: center; gap: 13px; min-width: 0; }
+.category-mark { display: grid; width: 40px; height: 40px; flex: 0 0 40px; place-items: center; border-radius: 12px; background: #eef5ee; font-size: 18px; }
+.expense-category { overflow: hidden; color: #34453a; font-size: 14px; font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.expense-date { margin-top: 4px; color: #929c94; font-size: 12px; }
+.expense-amount { color: #344a39; font-size: 15px; font-weight: 700; white-space: nowrap; }
+.expense-actions { display: flex; align-items: center; gap: 12px; }
+.delete-button, .secondary-button {
+  min-height: 42px;
+  padding: 0 13px;
+  border: 1px solid #e2e8e2;
+  border-radius: 9px;
+  background: #fff;
+  color: #64746a;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.delete-button:hover { border-color: #e2b6ad; background: #fff8f6; color: #a34d3e; }
+.filter-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+.filter-row label { min-width: 0; }
+.backup-actions { display: flex; gap: 9px; margin: 14px 0 0; }
+.secondary-button:hover { border-color: #9cb7a1; color: #3e684c; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+.backup-message, .form-message { min-height: 18px; margin: 8px 0 0; color: #a34d3e; font-size: 13px; }
+.chart-section { padding: 17px 0 20px; border-bottom: 1px solid #edf0ec; }
+.chart-section h3 { margin: 0 0 15px; color: #536258; font-size: 14px; }
+.category-chart { display: grid; gap: 12px; }
+.chart-row { display: grid; grid-template-columns: minmax(60px, 90px) 1fr auto; align-items: center; gap: 11px; }
+.chart-label { overflow: hidden; color: #536258; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.chart-track { height: 12px; overflow: hidden; border-radius: 99px; background: #eff2ee; }
+.chart-bar { height: 100%; min-width: 4px; border-radius: inherit; }
+.chart-value { color: #536258; font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chart-empty { margin: 0; color: #89948c; font-size: 13px; text-align: center; }
+.empty-state { margin: 0; padding: 34px 10px; color: #89948c; font-size: 14px; text-align: center; }
+footer { padding-top: 5px; color: #a0a9a2; font-size: 12px; text-align: center; }
+
+/* 窄螢幕改成單欄，讓表單與清單不會擠在一起。 */
+@media (max-width: 520px) {
+  body { padding: 34px 15px 24px; }
+  .card { padding: 21px 18px; border-radius: 15px; }
+  .form-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 18px; }
+  .submit-button { width: 100%; }
+  .filter-row { grid-template-columns: 1fr; gap: 12px; }
+  .expense-item { align-items: flex-start; gap: 8px; }
+  .expense-actions { flex-direction: column; align-items: flex-end; gap: 7px; }
+  .delete-button, .secondary-button { min-height: 44px; }
+  .chart-row { grid-template-columns: 55px 1fr auto; gap: 7px; }
+  .chart-value { font-size: 11px; }
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>簡單記帳本</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <p class="eyebrow">MY EXPENSES</p>
+      <h1>簡單記帳本</h1>
+      <p class="subtitle">記下每一筆支出，讓日常花費一目了然。</p>
+    </header>
+
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">新增一筆支出</h2>
+      <form id="expense-form" novalidate>
+        <div class="form-grid">
+          <label>
+            金額
+            <span class="amount-input"><span aria-hidden="true">$</span><input id="amount" name="amount" type="number" min="0.01" step="0.01" placeholder="例如 120" required></span>
+          </label>
+          <label>
+            分類
+            <select id="category" name="category" required>
+              <option value="" disabled selected>請選擇分類</option>
+              <option value="飲食">飲食</option>
+              <option value="交通">交通</option>
+              <option value="購物">購物</option>
+              <option value="娛樂">娛樂</option>
+              <option value="居家">居家</option>
+              <option value="其他">其他</option>
+            </select>
+          </label>
+          <label>
+            日期
+            <input id="date" name="date" type="date" required>
+          </label>
+        </div>
+        <button class="submit-button" type="submit">＋ 新增支出</button>
+        <p id="form-message" class="form-message" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="card list-card" aria-labelledby="list-title">
+      <!-- 這兩個選單只控制畫面篩選，不會改動儲存的原始紀錄。 -->
+      <div class="filter-row" aria-label="篩選支出">
+        <label>月份
+          <select id="month-filter" aria-label="依月份篩選">
+            <option value="">全部月份</option>
+          </select>
+        </label>
+        <label>分類
+          <select id="category-filter" aria-label="依分類篩選">
+            <option value="">全部分類</option>
+          </select>
+        </label>
+      </div>
+      <div class="list-heading">
+        <div>
+          <h2 id="list-title">支出清單</h2>
+          <p id="expense-count" class="list-caption">目前共 0 筆</p>
+        </div>
+        <p id="expense-total" class="total">$0</p>
+      </div>
+      <!-- 備份操作與狀態訊息；檔案選擇欄位由匯入按鈕開啟。 -->
+      <div class="backup-actions">
+        <button id="export-button" class="secondary-button" type="button">匯出備份</button>
+        <button id="import-button" class="secondary-button" type="button">匯入備份</button>
+        <input id="import-file" class="visually-hidden" type="file" accept=".json,application/json">
+      </div>
+      <p id="backup-message" class="backup-message" role="status" aria-live="polite"></p>
+      <!-- 長條圖只根據目前篩選後的紀錄繪製。 -->
+      <section class="chart-section" aria-labelledby="chart-title">
+        <h3 id="chart-title">分類統計</h3>
+        <div id="category-chart" class="category-chart" aria-live="polite"></div>
+        <p id="chart-empty" class="chart-empty">目前沒有資料</p>
+      </section>
+      <ul id="expense-list" class="expense-list" aria-live="polite"></ul>
+      <p id="empty-state" class="empty-state">還沒有支出紀錄，新增第一筆吧！</p>
+    </section>
+
+    <footer>資料只會儲存在這個瀏覽器中</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
